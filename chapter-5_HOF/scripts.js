@@ -1598,7 +1598,7 @@ const SCRIPTS = [
 if (
   typeof module !== 'undefined' &&
   module.exports &&
-  (typeof window === 'undefined' || window.exports != exports)
+  (typeof window === 'undefined' || window.exports !== exports)
 )
   module.exports = SCRIPTS;
 if (typeof global !== 'undefined' && !global.SCRIPTS) global.SCRIPTS = SCRIPTS;
