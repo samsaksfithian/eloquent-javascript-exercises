@@ -23,14 +23,20 @@ Write a function called withBoxUnlocked that takes a function
 value as argument, unlocks the box, runs the function, and then 
 ensures that the box is locked again before returning, regardless 
 of whether the argument function returned normally or threw an exception.
+
+For extra points, make sure that if you call withBoxUnlocked 
+when the box is already unlocked, the box stays unlocked.
 */
 
 function withBoxUnlocked(body) {
+  const startLocked = box.locked;
   try {
     box.unlock();
     body();
   } finally {
-    box.lock();
+    if (startLocked) {
+      box.lock();
+    }
   }
 }
 
