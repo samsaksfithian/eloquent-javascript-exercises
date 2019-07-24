@@ -10,19 +10,22 @@ function to create a new value and starts from the beginning.
 When defining the function, you can use a regular loop to do the actual looping.
 */
 
-// Your code here.
-const loop = (currValue, testFunc, updateFunc, bodyFunc) => {
+// recursive version
+const loopRecurse = (currValue, testFunc, updateFunc, bodyFunc) => {
   if (testFunc(currValue)) {
     bodyFunc(currValue);
-    const newVal = updateFunc(currValue);
-    loop(newVal, testFunc, updateFunc, bodyFunc);
+    loop(updateFunc(currValue), testFunc, updateFunc, bodyFunc);
   }
-  // for (let index = currValue; testFunc(index); updateFunc(index)) {
-  //   bodyFunc(index);
-  // }
 };
 
-loop(3, n => n > 0, n => n - 1, console.log);
+// for-loop version
+const loop = (currValue, testFunc, updateFunc, bodyFunc) => {
+  for (let index = currValue; testFunc(index); index = updateFunc(index)) {
+    bodyFunc(index);
+  }
+};
+
+loopRecurse(3, n => n > 0, n => n - 1, console.log);
 // → 3
 // → 2
 // → 1

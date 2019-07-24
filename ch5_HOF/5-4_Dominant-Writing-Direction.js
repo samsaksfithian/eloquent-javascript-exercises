@@ -47,8 +47,9 @@ function dominantDirection(text) {
     return script ? script.direction : '???';
   }).filter(({ name }) => name !== '???');
 
-  return counts.reduce((maxObj, currDir) =>
-    maxObj.count < currDir.count ? currDir : maxObj,
+  return counts.reduce(
+    (maxObj, currDirObj) => (maxObj.count < currDirObj.count ? currDirObj : maxObj),
+    { name: 'default', count: -1 },
   ).name;
 }
 
